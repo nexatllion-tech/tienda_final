@@ -1,1 +1,1 @@
-https://nexatllion-tech.github.io/tienda/
+https://nexatllion-tech.github.io/tienda_final/
