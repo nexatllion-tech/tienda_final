@@ -13,17 +13,22 @@ const campos =
     document.querySelectorAll('#profileForm  input');
 const formulario =
     document.getElementById('profileForm');
+const loginOut =
+  document.getElementById("logoutBtn");
+const avatar = 
+document.getElementById("avatar");
 let carga = 0;
 
 //Comprobar si existe tokens
 const miToken = localStorage.getItem("tokens");
 const miSesion = localStorage.getItem("usuarioSesion");
+let datosModificados;
 let existeTokens
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 if (miToken === null) {
     existeTokens = false;
-    window.location.href = "index.html";
+    //window.location.href = "index.html";
     //console.log("no existe"); 
 } else {
     existeTokens = true;
@@ -39,14 +44,14 @@ if (miToken === null) {
 }
 if (miSesion === null) {
     existeSesion = false;
-    window.location.href = "index.html";
+    //window.location.href = "index.html";
     //console.log("no existe"); 
 } else {
     existeSesion = true;
-    const datos = JSON.parse(miSesion);
+    datosModificados = JSON.parse(miSesion);
     //accountBtn.setAttribute("href", "perfil.html")
     // 4. Extraemos el nombre de usuario
-    const nombre = datos.username;
+    const nombre = datosModificados.username;
     accountBtn.innerHTML = nombre;
     //loginOut.classList.remove('hidden');
     console.log("Existe sesion")
@@ -73,10 +78,11 @@ function renderPerfil() {
     const cartDiv = document.createElement("div");
     cartDiv.classList.add("cart-grid");
 
-    fetch('https://fakestoreapi.com/users/1')
-        .then(response => response.json())
-        .then(data => {
-            cartDiv.innerHTML = `
+    if (existeSesion === false) {
+        fetch('https://fakestoreapi.com/users/1')
+            .then(response => response.json())
+            .then(data => {
+                cartDiv.innerHTML = `
         <div class="input-group">
             <div class="form-grid">
                 <label>Nombre</label>
@@ -113,9 +119,52 @@ function renderPerfil() {
             Usuario actualizado correctamente
         </div>
         `;
-            cartProfile.appendChild(cartDiv);
-        });
+                cartProfile.appendChild(cartDiv);
+            });
+    }
+    else {
+        console.log("datosModificados.nombre" + datosModificados.name.lastname)
+        cartDiv.innerHTML = `
+        <div class="input-group">
+            <div class="form-grid">
+                <label>Nombre</label>
+                <input type="text" name="firstname" value="${datosModificados.name.firstname}">
+            </div>
+            <div class="form-grid">
+                <label>Apellido</label>
+                <input type="text" name="lastname" value="${datosModificados.name.lastname}">
+            </div>
+            <div class="form-grid">
+                <label>Usuario</label>
+                <input type="text" name="username" value="${datosModificados.username}">
+            </div>
+            <div class="form-grid">
+                <label>Email</label>
+                <input type="text" name="email" value="${datosModificados.email}">
+            </div>
+            <div class="form-grid">
+                <label>Telefono</label>
+                <input type="text" name="phone" value="${datosModificados.phone}">
+            </div>
+            <div class="form-grid">
+                <label>Ciudad</label>
 
+                <input type="text" name="city" value="${datosModificados.address.city}">
+            </div>
+        </div>;
+        
+        <button class="save-btn" type="submit">
+            Guardar cambios
+        </button>
+
+        <div class="message" id="message">
+            Usuario actualizado correctamente
+        </div>
+        `;
+        cartProfile.appendChild(cartDiv);
+        console.log("primera letra"+datosModificados.username.charAt(0).toUpperCase())
+    avatar.innerHTML = datosModificados.username.charAt(0).toUpperCase();
+    } 
 }
 
 montarFavoritos();
@@ -242,13 +291,6 @@ modificarFormulario.addEventListener('submit', function (event) {
     console.log(modificarFormulario)
     const datosFormulario = new FormData(formulario);
     const valoresActuales = Object.fromEntries(datosFormulario.entries());
-    console.log(valoresActuales)
-    console.log("Valores actuales listos para enviar:", valoresActuales);
-    console.log("--- CONTENIDO DE VALORES ACTUALES ---");
-    console.log(valoresActuales);
-    console.table(valoresActuales);
-    console.log("-------------------------------------");
-
     console.log("Valores actuales listos para enviar:", valoresActuales);
     const user = { username: 'john_doe_updated', email: 'john.updated@example.com' };
     fetch('https://fakestoreapi.com/users/1', {
@@ -289,3 +331,17 @@ modificarFormulario.addEventListener('input', function (e) {
 
     console.log("sessionStorage guardado:", userUpdated);
 });
+
+loginOut.addEventListener(
+    "click",
+    () => {
+        console.log("cerrando sesion ...")
+        existeTokens = false;
+        localStorage.removeItem("tokens");
+        //localStorage.removeItem("favoritos");
+        localStorage.removeItem("usuarioSesion");
+        loginOut.classList.add('hidden');
+        accountBtn.innerHTML = "Mi cuenta";
+        window.location.href = "index.html";
+    }
+)
