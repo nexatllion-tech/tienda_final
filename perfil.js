@@ -14,9 +14,9 @@ const campos =
 const formulario =
     document.getElementById('profileForm');
 const loginOut =
-  document.getElementById("logoutBtn");
-const avatar = 
-document.getElementById("avatar");
+    document.getElementById("logoutBtn");
+const avatar =
+    document.getElementById("avatar");
 let carga = 0;
 
 //Comprobar si existe tokens
@@ -35,8 +35,8 @@ if (miToken === null) {
     const datos = JSON.parse(miToken);
     //accountBtn.setAttribute("href", "perfil.html")
     // 4. Extraemos el nombre de usuario
-    const nombre = datos.username;
-    accountBtn.innerHTML = nombre;
+    //const nombre = datos.username;
+    //accountBtn.innerHTML = nombre;
     //loginOut.classList.remove('hidden');
     console.log("Existe tockesns")
     //window.location.href= "perfil.html"
@@ -82,6 +82,8 @@ function renderPerfil() {
         fetch('https://fakestoreapi.com/users/1')
             .then(response => response.json())
             .then(data => {
+                accountBtn.innerHTML = data.username;
+                avatar.innerHTML = data.username.charAt(0).toUpperCase();
                 cartDiv.innerHTML = `
         <div class="input-group">
             <div class="form-grid">
@@ -162,9 +164,9 @@ function renderPerfil() {
         </div>
         `;
         cartProfile.appendChild(cartDiv);
-        console.log("primera letra"+datosModificados.username.charAt(0).toUpperCase())
-    avatar.innerHTML = datosModificados.username.charAt(0).toUpperCase();
-    } 
+        console.log("primera letra" + datosModificados.username.charAt(0).toUpperCase())
+        avatar.innerHTML = datosModificados.username.charAt(0).toUpperCase();
+    }
 }
 
 montarFavoritos();
