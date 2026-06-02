@@ -1,1 +1,1 @@
-https://luis123-rnrj.github.io/tienda/
+https://nexatllion-tech.github.io/tienda/
