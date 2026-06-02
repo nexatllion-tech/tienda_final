@@ -46,6 +46,8 @@ const searchInput =
 const categoryFilter =
   document.getElementById("categoryFilter");
 
+const enlaceDetalle =
+  document.getElementById("tituloProducto");
 // Ordenación
 const sortSelect =
   document.getElementById("sortSelect");
@@ -98,7 +100,7 @@ if (miToken === null) {
 } else {
   existeTokens = true;
   const datos = JSON.parse(miToken);
-//accountBtn.setAttribute("href", "perfil.html")
+  //accountBtn.setAttribute("href", "perfil.html")
   // 4. Extraemos el nombre de usuario
   const nombre = datos.username;
   accountBtn.innerHTML = nombre;
@@ -167,7 +169,7 @@ function montarProducts(producto) {
         </div>
         <div class="product-info">
           <p class="product-category">${producto.category}</p>
-          <h3 class="product-title">${producto.title}</h3>
+          <h3 class="product-title" style="cursor: pointer;" onclick="detallesProducto(${producto.id})">${producto.title}</h3>
           <p class="product-price">${producto.price}€</p>
           <div class="card-actions">
             <button class="add-btn" onclick="addToCart(${producto.id})" >Añadir</button>
@@ -685,7 +687,7 @@ loginForm.addEventListener(
         loginModal.classList.add('hidden');
         existeTokens = true;
         accountBtn.innerHTML = credenciales.username;
-        
+
         loginOut.classList.remove('hidden');
 
       });
@@ -770,7 +772,7 @@ accountBtn.addEventListener(
   () => {
     if (!existeTokens) {
       loginModal.classList.remove('hidden');
-    } else window.location.href= "perfil.html"
+    } else window.location.href = "perfil.html"
   }
 );
 
@@ -806,6 +808,13 @@ loginModal.addEventListener(
 );
 
 
+function detallesProducto(id){
+  //console.log(id)
+  const datosId = { id };
+        localStorage.removeItem("idProducto");
+        localStorage.setItem("idProducto", JSON.stringify(datosId))
+        window.location.href= "detalleProducto.html"
+}
 // ========================================
 // INIT APP
 // ========================================
