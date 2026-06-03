@@ -10,7 +10,7 @@ TECNOLOGÍAS:
 - SessionStorage
 
 FASES:
-1. Productos
+1. Productosf
 2. Filtros
 3. Carrito
 4. EXTRA Persistencia
@@ -71,6 +71,9 @@ const loginForm =
 const loginOut =
   document.querySelector(".logout-btn");
 
+const admin =
+  document.querySelector(".admin-btn");
+
 //const card = document.createElement("product-card");
 // ========================================
 // VARIABLES GLOBALES
@@ -105,6 +108,7 @@ if (miToken === null) {
   const nombre = datos.username;
   accountBtn.innerHTML = nombre;
   loginOut.classList.remove('hidden');
+  admin.classList.remove("hidden");
   //window.location.href= "perfil.html"
   //console.log("existe");  
 }
@@ -689,7 +693,7 @@ loginForm.addEventListener(
         accountBtn.innerHTML = credenciales.username;
 
         loginOut.classList.remove('hidden');
-
+        admin.classList.remove('hidden');
       });
 
     e.preventDefault();
@@ -743,6 +747,7 @@ loginOut.addEventListener(
     existeTokens = false;
     localStorage.removeItem("tokens");
     loginOut.classList.add('hidden');
+    admin.classList.add("hidden")
     accountBtn.innerHTML = "Mi cuenta";
   }
 )
@@ -785,6 +790,7 @@ closeLogin.addEventListener(
   "click",
   () => {
     loginModal.classList.add('hidden');
+    admin.classList.add("hidden")
     // TODO
 
   }
@@ -807,13 +813,20 @@ loginModal.addEventListener(
   }
 );
 
+admin.addEventListener(
+  "click",
+  (e) => {
 
-function detallesProducto(id){
+    window.location.href = "admin.html"
+  }
+);
+
+function detallesProducto(id) {
   //console.log(id)
   const datosId = { id };
-        localStorage.removeItem("idProducto");
-        localStorage.setItem("idProducto", JSON.stringify(datosId))
-        window.location.href= "detalleProducto.html"
+  localStorage.removeItem("idProducto");
+  localStorage.setItem("idProducto", JSON.stringify(datosId))
+  window.location.href = "detalleProducto.html"
 }
 // ========================================
 // INIT APP

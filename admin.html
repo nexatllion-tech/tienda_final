@@ -89,7 +89,10 @@
         /* ===================================
    STATS
 =================================== */
-
+        .enlace {
+            text-decoration: none;
+            color: inherit;
+        }
         .stats {
 
             display: grid;
@@ -224,34 +227,39 @@
         }
 
         .edit-btn {
-
             border: none;
 
-            background: #dbeafe;
+            background: #1d4ed8;
 
-            color: #1d4ed8;
+            color: white;
 
-            padding: 10px 16px;
+            padding: 10px 14px;
 
-            border-radius: 12px;
+            border-radius: 10px;
+
+            font-weight: bold;
 
             cursor: pointer;
+
+
 
         }
 
         .delete-btn {
-
             border: none;
 
-            background: #fee2e2;
+            background: #dc2626;
 
-            color: #dc2626;
+            color: white;
 
-            padding: 10px 16px;
+            padding: 10px 14px;
 
-            border-radius: 12px;
+            border-radius: 10px;
+
+            font-weight: bold;
 
             cursor: pointer;
+
 
         }
 
@@ -362,9 +370,9 @@
 
         <header class="header">
 
-            <div class="logo">
+            <div class="logo enlace">
 
-                Nova<span>Shop</span> Admin
+                <a href="index.html" class="enlace">Nova</a><span><a href="index.html" class="enlace">Shop</a></span> Admin
 
             </div>
 
@@ -379,22 +387,22 @@
         <section class="stats">
 
             <article class="stat-card">
-                <h2 id="totalProducts">0</h2>
+                <h2 id="totalProducts">20</h2>
                 <p>Productos</p>
             </article>
 
             <article class="stat-card">
-                <h2 id="totalUsers">0</h2>
+                <h2 id="totalUsers">12570</h2>
                 <p>Usuarios</p>
             </article>
 
             <article class="stat-card">
-                <h2 id="totalOrders">0</h2>
+                <h2 id="totalOrders">330</h2>
                 <p>Pedidos</p>
             </article>
 
             <article class="stat-card">
-                <h2 id="totalSales">0€</h2>
+                <h2 id="totalSales">12450€</h2>
                 <p>Ventas</p>
             </article>
 
@@ -424,10 +432,18 @@
                         <th>Acciones</th>
                     </tr>
 
+
                 </thead>
 
                 <tbody id="productsTable">
-
+                    <tr>
+                        <td> imagen </td>
+                        <td> imagen </td>
+                        <td> imagen </td>
+                        <td> imagen </td>
+                        <td> <button class="delete-btn">Eliminar</button> <button class="edit-btn">Modificar</button>
+                        </td>
+                    </tr>
                 </tbody>
 
             </table>
@@ -460,7 +476,7 @@
 
                     <label>Precio</label>
 
-                    <input type="number" id="price">
+                    <input type="text" id="price" pattern="^\d+(\.\d{1,2})?$">
 
                 </div>
 
@@ -477,6 +493,7 @@
                 </button>
 
             </form>
+
 
         </div>
 
