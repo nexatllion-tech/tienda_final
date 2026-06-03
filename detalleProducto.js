@@ -3,7 +3,7 @@ let miToken = localStorage.getItem("idProducto");
 let existeTokens
 let idDetalle;
 let categoria;
-let productsContainer;
+//let productsContainer;
 let cart = [];
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -28,13 +28,14 @@ function renderDetalleProducto() {
         .then(response => response.json())
         .then(data => {
             iconoCorazon = favoritos.includes(data.id) ? "❤️" : "🤍";
-            console.log(iconoCorazon);
+            //console.log(iconoCorazon);
             categoria = data.category;
             //console.log("categoria primera" + categoria)
-            productsContainer = document.querySelector(".container");
+            //productsContainer = document.querySelector(".container");
+            const productsContainer = document.querySelector(".container");
             productsContainer.innerHTML += `
                 <div class="breadcrumb">
-                    <a href="index.html">Home </a> / ${data.category} ;  / ${data.title}
+                    <a href="index.html" class="enlace">Home </a> / ${data.category} ;  / ${data.title}
                 </div>
                 <section class="product-box">
                     <div class="left-side">
@@ -87,35 +88,8 @@ function renderDetalleProducto() {
                 </section>
 
             `;
+            productosRelacionados();
         })
-    // const cuantroCat = 4;
-    // let i = 0;
-    // fetch('https://fakestoreapi.com/products')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log(data);
-
-    //         const productsContainer = document.querySelector(".container");
-    //         if (i < 4) {
-    //             console.log("categoria: " + categoria);
-    //             console.log("cuatroCat: " + cuantroCat)
-    //             productsContainer.innerHTML += `
-    //                 <section class="related">
-    //                     <h2>
-    //                         Productos relacionados
-    //                     </h2>
-    //                     <div class="related-grid" id="relatedGrid">
-    //                         <img id="productImage" src="${data.image}">
-    //                     </div>
-    //                 </section>
-    //         `;
-    //             i++;
-    //         }
-
-
-    //     });
-
-
 }
 
 function productosRelacionados() {
@@ -130,7 +104,9 @@ function productosRelacionados() {
                 product.category.includes(categoria)
             );
             //console.log(productosFiltrados)
-            //const productsContainer  = document.querySelector(".container");
+            const productsContainer = document.querySelector(".container");
+            //productsContainer = document.querySelector(".container");
+
             productsContainer.innerHTML += `
                 <section class="related">
                     <h2>Productos relacionados</h2>
@@ -162,6 +138,7 @@ function detallesProducto(id) {
     const datosId = { id };
     localStorage.removeItem("idProducto");
     localStorage.setItem("idProducto", JSON.stringify(datosId));
+    const productsContainer = document.querySelector(".container");
     productsContainer.innerHTML = "";
     window.location.href = "detalleProducto.html"
 }
@@ -190,42 +167,29 @@ function toggleFavorite(id) {
 }
 
 
-function addToCart(id) {
+async function addToCart(id) {
 
-    console.log(carrito)
-    //console.log("Intentando agregar ID:", id);
-    //console.log("Lista de productos disponibles actualmente en memoria:", allProducts);
-
-    //const productoEncontrado = products.find(prod => prod.id === id);
+    //console.log(carrito)
     const productoEncontrado = carrito.find(prod => Number(prod.id) === Number(id));
-    console.log("producto encontrado" + productoEncontrado)
+    //console.log("producto encontrado" + productoEncontrado)
     if (!productoEncontrado) {
-        console.error("Producto no encontrado en el array 'products'. ID buscado:", id);
+
+        const response = await fetch(
+            `https://fakestoreapi.com/products/${id}`
+        );
+
+        const producto = await response.json();
+        carrito.push({
+            ...producto,
+            quantity: 1
+        });
+
+        guardarCarrito();
         return;
     }
 
-    const existeEnCarrito = carrito.some(item => Number(item.id) === Number(id));
-
-    if (existeEnCarrito===undefined) {
-        carrito = carrito.map(item =>
-            item.id === id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-        );
-    } else {
-        url = 'https://fakestoreapi.com/products/'
-        url += id;
-        console.log(url)
-        carrito.push({
-            ...productoEncontrado,
-            quantity: 1
-        });
-    }
-
-    guardarCarrito();
-
-    console.log("¡Producto agregado con éxito!", productoEncontrado);
-    console.log("final0" + carrito)
+    //console.log("Producto agregado"+ productoEncontrado);
+    //console.log("final0" + carrito)
 }
 
 function guardarCarrito() {
@@ -233,4 +197,3 @@ function guardarCarrito() {
 }
 
 renderDetalleProducto();
-productosRelacionados();
