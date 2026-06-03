@@ -172,6 +172,7 @@ async function addToCart(id) {
     //console.log(carrito)
     const productoEncontrado = carrito.find(prod => Number(prod.id) === Number(id));
     //console.log("producto encontrado" + productoEncontrado)
+
     if (!productoEncontrado) {
 
         const response = await fetch(
@@ -179,14 +180,22 @@ async function addToCart(id) {
         );
 
         const producto = await response.json();
+
         carrito.push({
             ...producto,
             quantity: 1
         });
 
-        guardarCarrito();
-        return;
+    } else {
+
+        carrito = carrito.map(item =>
+            Number(item.id) === Number(id)
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+        );
     }
+
+    guardarCarrito();
 
     //console.log("Producto agregado"+ productoEncontrado);
     //console.log("final0" + carrito)
