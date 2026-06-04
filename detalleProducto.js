@@ -203,6 +203,7 @@ async function addToCart(id) {
 
 function guardarCarrito() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
+    alert("Añadido producto")
 }
 
 renderDetalleProducto();
