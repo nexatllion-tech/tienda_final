@@ -876,3 +876,22 @@ RESPONSIVE
   }
 
 }
+
+        .boton-apagar {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .boton-apagar:hover {
+            background-color: #cc0000;
+        }
+        .icono {
+            font-weight: bold;
+        }
