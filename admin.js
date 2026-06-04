@@ -13,6 +13,8 @@ const nuevoProducto =
     document.getElementById("addProductBtn");
 const form =
     document.getElementById("productForm");
+const totalProductos =
+  document.getElementById("totalProducts");
 
 let existeTokens;
 let datosEliminarModificar = [];
@@ -38,7 +40,7 @@ function renderProductos() {
     const tablaRellenar = document.getElementById("productsTable");
 
     let html = "";
-
+    //totalProductos.innerHTML = datosEliminarModificar.length;
     datosEliminarModificar.forEach(producto => {
         html += `
             <tr>
