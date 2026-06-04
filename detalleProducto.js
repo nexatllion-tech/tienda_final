@@ -35,7 +35,7 @@ function renderDetalleProducto() {
             const productsContainer = document.querySelector(".container");
             productsContainer.innerHTML += `
                 <div class="breadcrumb">
-                    <a href="index.html" class="enlace">Home </a> / ${data.category} ;  / ${data.title}
+                    <a href="index.html" class="enlace">Home </a> / ${data.category}  / ${data.title}
                 </div>
                 <section class="product-box">
                     <div class="left-side">
