@@ -95,7 +95,7 @@ busquedaInput.addEventListener(
     "input",
     (e) => {
         filterProducts(e.target.value);
-        console.log("buscando ...", e.target.value)
+        //console.log("buscando ...", e.target.value)
     }
 );
 
@@ -144,7 +144,7 @@ function busquedaEliminar(id) {
 
 
 function cerrarModal() {
-    console.log("cerrando modal"); // <- prueba
+    //console.log("cerrando modal"); 
     const modal = document.getElementById("modal");
     modal.style.display = "none";
     document.getElementById("productForm").reset();
@@ -175,7 +175,7 @@ nuevoProducto.addEventListener("click", () => {
     const form = document.getElementById("productForm");
     form.reset();
     form.dataset.id = "";
-    console.log("añadiendo nuevo producto...");
+    //console.log("añadiendo nuevo producto...");
 });
 
 form.addEventListener("submit", function (e) {

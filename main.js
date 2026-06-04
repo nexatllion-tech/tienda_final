@@ -417,8 +417,6 @@ function addToCart(id) {
     return;
   }
 
-  //console.log("Intentando agregar ID:", id);
-  //console.log("Lista de productos disponibles actualmente en memoria:", allProducts);
 
   //const productoEncontrado = products.find(prod => prod.id === id);
   const productoEncontrado = allProducts.find(prod => Number(prod.id) === Number(id));
@@ -444,7 +442,7 @@ function addToCart(id) {
 
   guardarCarrito();
   renderCart();
-  console.log("¡Producto agregado con éxito!", productoEncontrado);
+  //console.log("¡Producto agregado con éxito!", productoEncontrado);
 }
 
 /*
@@ -703,7 +701,7 @@ TAREAS:
 loginOut.addEventListener(
   "click",
   () => {
-    console.log("cerrando sesion ...")
+    //console.log("cerrando sesion ...")
     existeTokens = false;
     localStorage.removeItem("tokens");
     loginOut.classList.add('hidden');

@@ -65,7 +65,7 @@ getUser()
 function getUser() {
     fetch('https://fakestoreapi.com/users/1')
         .then(response => response.json())
-        .then(data => console.log(data));
+        .then(data => console.log(" "));
 }
 
 // aqui hay que poner un if con  existeSesion , si existe, carga 
@@ -153,12 +153,10 @@ function renderPerfil() {
 
                 <input type="text" name="city" value="${datosModificados.address.city}">
             </div>
-        </div>;
-        
+        </div>
         <button class="save-btn" type="submit">
             Guardar cambios
         </button>
-
         <div class="message" id="message">
             Usuario actualizado correctamente
         </div>

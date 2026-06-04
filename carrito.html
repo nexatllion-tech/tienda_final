@@ -31,6 +31,20 @@
             color: var(--text);
         }
 
+        footer {
+
+            margin-top: 50px;
+
+            background: #0f172a;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+
+        }
+
         .container {
             max-width: 1200px;
             margin: 60px auto;
@@ -246,37 +260,37 @@
 
                         <div class="input-group">
                             <label>Nombre</label>
-                            <input type="text">
+                            <input type="text" name="nombre" required>
                         </div>
 
                         <div class="input-group">
                             <label>Apellidos</label>
-                            <input type="text">
+                            <input type="text" name="apellidos" required>
                         </div>
 
                         <div class="input-group full">
                             <label>Dirección</label>
-                            <input type="text">
+                            <input type="text" name="direccion" required>
                         </div>
 
                         <div class="input-group">
                             <label>Ciudad</label>
-                            <input type="text">
+                            <input type="text" name="ciudad" required>
                         </div>
 
                         <div class="input-group">
                             <label>Código postal</label>
-                            <input type="text">
+                            <input type="number" name="cp" required>
                         </div>
 
                         <div class="input-group">
                             <label>Teléfono</label>
-                            <input type="text">
+                            <input type="number" name="telefono" required>
                         </div>
 
                         <div class="input-group">
                             <label>Email</label>
-                            <input type="email">
+                            <input type="email" name="email" required>
                         </div>
 
                     </div>
@@ -293,20 +307,6 @@
 
                 <article class="cart-item">
 
-                    <img
-                        src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-16-pro-max-desert">
-
-                    <div class="cart-item-info">
-
-                        <p class="cart-item-title">
-                            iPhone 16 Pro Max
-                        </p>
-
-                        <p class="cart-item-price">
-                            1 x 1399€
-                        </p>
-
-                    </div>
 
                 </article>
 
@@ -326,6 +326,11 @@
         </div>
 
     </div>
+    <footer>
+        <p>
+            Proyecto Mini Ecommerce · JavaScript + Git
+        </p>
+    </footer>
     <script src="carrito.js"></script>
 </body>
 

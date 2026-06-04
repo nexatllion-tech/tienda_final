@@ -1,8 +1,8 @@
 // =========================
 // SELECTORES
 // =========================
-const finalizarCompra =
-    document.querySelector(".buy-btn");
+// const finalizarCompra =
+//     document.querySelector(".buy-btn");
 
 const accountBtn =
     document.querySelector(".cart-btn");
@@ -143,7 +143,7 @@ function renderCart() {
             <span>Total</span>
             <span>${totalAcumulado.toFixed(2)}€</span>
         </div>
-        <button class="buy-btn">
+        <button onclick="finalizarCompra()" class="buy-btn">
             Comprar ahora
         </button>
     `;
@@ -152,13 +152,19 @@ function renderCart() {
     cartTotal.textContent = `${totalAcumulado.toFixed(2)}€`;
 }
 
-finalizarCompra.addEventListener(
-    "click",
-    () => {
-        console.log("comprando ...")
+// finalizarCompra.addEventListener(
+//     "click",
+//     () => {
+//         console.log("comprando ...")
 
-    }
-)
+//     }
+// )
+function finalizarCompra() {
+    console.log("Finalizando compra.. ");
+    alert("Compra realizada correctamente");
+    window.location.href = "index.html"
+}
+
 
 function updateCartTotal() {
 
