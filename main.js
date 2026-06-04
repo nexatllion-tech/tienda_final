@@ -74,6 +74,10 @@ const loginOut =
 const admin =
   document.querySelector(".admin-btn");
 
+const totalProductos =
+  document.getElementById("totalProducts");
+
+totalProductos.innerHTML = "182";
 //const card = document.createElement("product-card");
 // ========================================
 // VARIABLES GLOBALES
@@ -655,7 +659,7 @@ loginForm.addEventListener(
       });
 
     e.preventDefault();
-    console.log("inicio sesion correcto")
+    //console.log("inicio sesion correcto")
 
     // TODO
 
