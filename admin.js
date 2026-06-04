@@ -40,7 +40,7 @@ function renderProductos() {
     const tablaRellenar = document.getElementById("productsTable");
 
     let html = "";
-    //totalProductos.innerHTML = datosEliminarModificar.length;
+    
     datosEliminarModificar.forEach(producto => {
         html += `
             <tr>
@@ -69,6 +69,7 @@ function renderProductos() {
 
 
 function renderProducts(data) {
+    totalProductos.innerHTML = data.length;
     const tablaRellenar = document.getElementById("productsTable");
     tablaRellenar.innerHTML = data.map(producto => `
         <tr>
