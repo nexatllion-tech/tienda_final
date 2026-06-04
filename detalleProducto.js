@@ -14,7 +14,7 @@ if (miToken === null) {
     existeTokens = true;
     miToken = localStorage.getItem("idProducto");
     idDetalle = JSON.parse(miToken);
-    console.log("id: " + idDetalle.id)
+    //console.log("id: " + idDetalle.id)
 }
 
 
