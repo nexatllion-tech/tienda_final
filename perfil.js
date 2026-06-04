@@ -38,7 +38,7 @@ if (miToken === null) {
     //const nombre = datos.username;
     //accountBtn.innerHTML = nombre;
     //loginOut.classList.remove('hidden');
-    console.log("Existe tockesns")
+    //console.log("Existe tockesns")
     //window.location.href= "perfil.html"
     //console.log("existe");  
 }
@@ -54,7 +54,7 @@ if (miSesion === null) {
     const nombre = datosModificados.username;
     accountBtn.innerHTML = nombre;
     //loginOut.classList.remove('hidden');
-    console.log("Existe sesion")
+    //console.log("Existe sesion")
     //window.location.href= "perfil.html"
     //console.log("existe");  
 }
@@ -125,7 +125,7 @@ function renderPerfil() {
             });
     }
     else {
-        console.log("datosModificados.nombre" + datosModificados.name.lastname)
+        //console.log("datosModificados.nombre" + datosModificados.name.lastname)
         cartDiv.innerHTML = `
         <div class="input-group">
             <div class="form-grid">
@@ -164,7 +164,7 @@ function renderPerfil() {
         </div>
         `;
         cartProfile.appendChild(cartDiv);
-        console.log("primera letra" + datosModificados.username.charAt(0).toUpperCase())
+        //console.log("primera letra" + datosModificados.username.charAt(0).toUpperCase())
         avatar.innerHTML = datosModificados.username.charAt(0).toUpperCase();
     }
 }
@@ -220,7 +220,7 @@ cargarMas.addEventListener(
             for (let i = carga; i < favoritos.length && i < carga + 4; i++) {
                 url = 'https://fakestoreapi.com/products/';
                 url += favoritos[i];
-                console.log(url)
+                //console.log(url)
                 fetch(url)
                     .then(response => response.json())
                     .then(data => {
@@ -289,11 +289,11 @@ function misPedidos() {
 
 modificarFormulario.addEventListener('submit', function (event) {
     event.preventDefault()
-    console.log("click en modificar")
-    console.log(modificarFormulario)
+    //console.log("click en modificar")
+    //console.log(modificarFormulario)
     const datosFormulario = new FormData(formulario);
     const valoresActuales = Object.fromEntries(datosFormulario.entries());
-    console.log("Valores actuales listos para enviar:", valoresActuales);
+    //console.log("Valores actuales listos para enviar:", valoresActuales);
     const user = { username: 'john_doe_updated', email: 'john.updated@example.com' };
     fetch('https://fakestoreapi.com/users/1', {
         method: 'PUT',
@@ -302,10 +302,12 @@ modificarFormulario.addEventListener('submit', function (event) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log("Respuesta de la API:", data);
+            //console.log("Respuesta de la API:", data);
         })
         .catch(error => console.error("Error al actualizar:", error));
     localStorage.setItem('usuarioSesion', JSON.stringify(userUpdated));
+    accountBtn.innerHTML = userUpdated.username;
+    avatar.innerHTML = userUpdated.username.charAt(0).toUpperCase();
 }
 
 )
@@ -313,7 +315,7 @@ let userUpdated
 modificarFormulario.addEventListener('input', function (e) {
     const contenedor = e.target.closest('.input-group');
     const etiqueta = contenedor.querySelector('label').textContent;
-    console.log(`Escribiendo en el campo "${etiqueta}": ${e.target.value}`);
+    //console.log(`Escribiendo en el campo "${etiqueta}": ${e.target.value}`);
     const datosFormulario = new FormData(modificarFormulario);
     const valores = Object.fromEntries(datosFormulario.entries());
     userUpdated = {
@@ -331,13 +333,14 @@ modificarFormulario.addEventListener('input', function (e) {
         phone: valores.phone
     };
 
-    console.log("sessionStorage guardado:", userUpdated);
+    //console.log("sessionStorage guardado:", userUpdated);
+
 });
 
 loginOut.addEventListener(
     "click",
     () => {
-        console.log("cerrando sesion ...")
+        //console.log("cerrando sesion ...")
         existeTokens = false;
         localStorage.removeItem("tokens");
         //localStorage.removeItem("favoritos");
