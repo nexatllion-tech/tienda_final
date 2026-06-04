@@ -283,46 +283,6 @@ productsContainer.appendChild(card);
 ========================================
 */
 
-/*
-function renderProducts(product) {
-  productsContainer.innerHTML +=
-    `   
-    <article class="product-card">
-        <div class="product-image">
-          <img
-            src="${product.image}"
-            alt="${product.title}"
-          >
-        </div>
-        <div class="product-info">
-          <p class="product-category">
-            ${product.category}
-          </p>
-          <h3 class="product-title">
-            ${product.title}
-          </h3>
-          <p class="product-price">
-            ${product.price}
-          </p>
-          <div class="card-actions">
-            <button class="add-btn">
-            </button>
-            <button class="fav-btn">
-              🤍
-            </button>
-          </div>
-        </div>
-      </article>
-      `;
-       console.log(card)
- // productsContainer.appendChild(card);
-
-  // TODO
-
-}
-  */
-
-
 // ========================================
 // FASE 2 - CATEGORÍAS
 // ========================================
@@ -843,13 +803,3 @@ TAREAS:
 - Comprobar sesión
 */
 
-
-function init() {
-
-  // TODO
-
-}
-
-
-// Iniciar aplicación
-init();
